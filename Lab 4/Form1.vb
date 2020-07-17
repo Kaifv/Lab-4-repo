@@ -2,8 +2,9 @@
 
 ' Author:       Kaifkhan Vakil 
 ' Date:         2020-07-15
-' Description:  The purpose of this program is to track students currently enrolled and their info.
-'               This information is also able to be updated after entry
+' Description: In the following code i will track the car list data and their all details along with their price and status in the database. I have created clas in the following program to 
+' track all the function and define constructors which will help me build up the code. 
+
 Public Class carInventoryForm
 #Region "Variables and constants"
     Const MIN_PRICE As Decimal = 0
@@ -118,6 +119,7 @@ Public Class carInventoryForm
         lblOutput.Text = "Reset form "
     End Sub
 
+
     Private Sub dataUpdate()
         Dim carRef As ListViewItem
 
@@ -138,6 +140,23 @@ Public Class carInventoryForm
         Next
 
         ' Loop around new list
+    End Sub
+
+    Private Sub lvCarList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvCarList.SelectedIndexChanged
+        If (Not lvCarList.FocusedItem Is Nothing) Then
+            listViewIndex = lvCarList.FocusedItem.Index
+            Dim car As Car = newCar(listViewIndex)
+
+            editMode = True
+
+            cbMakeList.Text = car.manufacturer
+            txtModel.Text = car.design
+            cbYearList.Text = car.time
+            txtPrice.Text = car.amount
+            ckCondition.Checked = car.status
+
+
+        End If
     End Sub
 #End Region
 
