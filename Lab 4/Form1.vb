@@ -5,6 +5,9 @@
 ' Description: In the following code i will track the car list data and their all details along with their price and status in the database. I have created clas in the following program to 
 ' track all the function and define constructors which will help me build up the code. 
 
+''' <summary>
+''' Declaring all the constants and variables which will helpful in the code. 
+''' </summary>
 Public Class carInventoryForm
 #Region "Variables and constants"
     Const MIN_PRICE As Decimal = 0
@@ -13,7 +16,7 @@ Public Class carInventoryForm
     Const MAX_YEAR As Integer = 2020
 
     Dim newCar As New List(Of Car)
-    Dim editMode As Boolean = False
+    Dim changesMade As Boolean = False
     Dim modification As Boolean = False
     Dim listViewIndex As Integer = -1
 
@@ -41,7 +44,7 @@ Public Class carInventoryForm
         Dim car As Car
 
         If (String.IsNullOrEmpty(problems)) Then
-            If (editMode) Then
+            If (changesMade) Then
                 newCar(listViewIndex).manufacturer = validMake
                 newCar(listViewIndex).design = validModel
                 newCar(listViewIndex).time = validYear
@@ -114,7 +117,7 @@ Public Class carInventoryForm
         cbYearList.SelectedIndex = -1
 
 
-        editMode = False
+        changesMade = False
 
         lblOutput.Text = "Reset form "
     End Sub
@@ -147,7 +150,7 @@ Public Class carInventoryForm
             listViewIndex = lvCarList.FocusedItem.Index
             Dim car As Car = newCar(listViewIndex)
 
-            editMode = True
+            changesMade = True
 
             cbMakeList.Text = car.manufacturer
             txtModel.Text = car.design
